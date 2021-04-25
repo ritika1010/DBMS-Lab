@@ -1,0 +1,12 @@
+package b7_new;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		connectivity obj=new connectivity();
+		System.out.print(" b" );
+
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Inline local variable &apos;b7.jsondecode.decode().marks&apos; in &apos;b7.jsondecode.decode()&apos;&#x0A;- Original project: &apos;b7&apos;&#x0A;- Original element: &apos;b7.jsondecode.decode().marks&apos;" description="Inline local variable &apos;marks&apos;" id="org.eclipse.jdt.ui.inline.temp" input="/src&lt;b7{jsondecode.java" selection="323 35" stamp="1569237374385" version="1.0"/>
+</session>

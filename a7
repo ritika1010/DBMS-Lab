@@ -1,0 +1,61 @@
+***SQL> desc customer13;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID				   NOT NULL NUMBER(10)
+ NAME					   NOT NULL VARCHAR2(50)
+ TOTAL_PURTCHASE				    NUMBER(20)
+
+SQL> desc category13
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID				   NOT NULL NUMBER(10)
+ NAME					   NOT NULL VARCHAR2(50)
+ CLASS					   NOT NULL VARCHAR2(20)
+
+
+***CREATE OR REPLACE PROCEDURE insert_cust(x IN customer13.cust_id%TYPE, y IN customer13.name%TYPE, z IN customer13.TOTAL_PURCHASE%TYPE)
+ IS 
+BEGIN 
+insert into customer13 values(x,y,z);
+
+   IF (z <=20000 and z>=10000) THEN 
+	insert into category13 values(x,y,'platin');  
+   ELSIF (z<=9999 and z>=5000) THEN
+      insert into category13 values(x,y,'gold'); 
+   ELSE 
+      insert into category13 values(x,y,'silver');
+   END IF; 
+END;   
+/
+
+
+***SQL>  select * from customer13;
+
+   CUST_ID NAME       TOTAL_PURCHASE
+---------- ---------- --------------
+	12 riya 		6000
+	40 sanam		4000
+	17 gitesh	       12000
+	11 atharva		1200
+	32 varun	       16000
+	10 ritika	       10000
+
+6 rows selected.
+
+SQL> select * from category13;
+
+   CUST_ID NAME       CLASS
+---------- ---------- -------
+	12 riya       gold
+	40 sanam      silver
+	17 gitesh     platin
+	11 atharva    silver
+	32 varun      platin
+	10 ritika     platin
+
+6 rows selected.
+
+BEGIN
+insert_cust(10,'ritika',10000);
+END;
+/

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="/home/TE/mongo-java-driver-3.8.1(1).jar"/>
+	<classpathentry kind="lib" path="/home/TE/Downloads/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/TE/Downloads/json-20160807.jar"/>
+	<classpathentry kind="lib" path="/run/media/TE/EEEA-48D0/Assignmnt13/json-20160807.jar"/>
+	<classpathentry kind="lib" path="/run/media/TE/EEEA-48D0/Assignmnt13/bson-3.0.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

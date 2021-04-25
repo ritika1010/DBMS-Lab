@@ -1,0 +1,148 @@
+createCollection("CRUD")
+
+ db.CRUD.insert([{name:'Ritika',rno:'3413',branch:'comp',div:'te4'},{name:'Riya',rno:'3415',branch:'comp',div:'te4'},{name:'Nikita',rno:'3210',branch:'entc',div:'te2'}])
+
+ db.CRUD.find().pretty();
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e8"),
+	"name" : "Ritika",
+	"rno" : "3413",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e9"),
+	"name" : "Riya",
+	"rno" : "3415",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+> db.CRUD.find();
+{ "_id" : ObjectId("5d76341e31ea43ade8b2b9e8"), "name" : "Ritika", "rno" : "3413", "branch" : "comp", "div" : "te4" }
+{ "_id" : ObjectId("5d76341e31ea43ade8b2b9e9"), "name" : "Riya", "rno" : "3415", "branch" : "comp", "div" : "te4" }
+{ "_id" : ObjectId("5d76341e31ea43ade8b2b9ea"), "name" : "Nikita", "rno" : "3210", "branch" : "entc", "div" : "te2" }
+
+
+ db.CRUD.find({"branch":"entc"})
+{ "_id" : ObjectId("5d76341e31ea43ade8b2b9ea"), "name" : "Nikita", "rno" : "3210", "branch" : "entc", "div" : "te2" }
+> db.CRUD.find({"branch":"entc"}).pretty();
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+> 
+
+db.CRUD.find($or:{{"branch":"entc"},{"name":"Ritika"}}).pretty();
+2019-09-09T16:49:12.917+0530 E QUERY    SyntaxError: Unexpected token :
+> db.CRUD.find({$or:[{"branch":"entc"},{"name":"Ritika"}]}).pretty();
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e8"),
+	"name" : "Ritika",
+	"rno" : "3413",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+
+
+ db.CRUD.find({"rno":{$not:{$eq:3413}}}).pretty()
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e8"),
+	"name" : "Ritika",
+	"rno" : "3413",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e9"),
+	"name" : "Riya",
+	"rno" : "3415",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+
+ db.CRUD.find({"rno":{$not:{$eq:'3413'}}}).pretty()
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e9"),
+	"name" : "Riya",
+	"rno" : "3415",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+
+
+db.CRUD.update({name:"Ritika"},{$set:{"branch":"it"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.CRUD.find().pretty();
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e8"),
+	"name" : "Ritika",
+	"rno" : "3413",
+	"branch" : "it",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e9"),
+	"name" : "Riya",
+	"rno" : "3415",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+> 
+
+db.CRUD.remove({"branch":"it"})
+WriteResult({ "nRemoved" : 1 })
+> db.CRUD.find().pretty();
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9e9"),
+	"name" : "Riya",
+	"rno" : "3415",
+	"branch" : "comp",
+	"div" : "te4"
+}
+{
+	"_id" : ObjectId("5d76341e31ea43ade8b2b9ea"),
+	"name" : "Nikita",
+	"rno" : "3210",
+	"branch" : "entc",
+	"div" : "te2"
+}
+> 
+

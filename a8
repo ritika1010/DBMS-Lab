@@ -1,0 +1,87 @@
+create table stud(rno number(5),name varchar2(10),branch varchar2(6),status varchar2(2));
+create table alumnii(rno number(5),name varchar2(10),branch varchar2(6));
+
+
++++++CREATE OR REPLACE TRIGGER del
+AFTER DELETE ON stud
+FOR EACH ROW  
+BEGIN 
+   insert into alumnii(rno, name, branch) values (:OLD.rno,:OLD.name,:OLD.branch);
+   dbms_output.put_line(:OLD.rno|| :OLD.name|| :OLD.branch); 
+END; 
+/
+
+CREATE OR REPLACE TRIGGER upd
+AFTER Update ON stud
+FOR EACH ROW  
+BEGIN 
+   insert into alumnii(rno, name, branch) values (:OLD.rno,:OLD.name,:OLD.branch);
+   dbms_output.put_line(:OLD.rno|| :OLD.name|| :OLD.branch || 'updated'); 
+END; 
+/
+
+BEGIN
+insert into stud values(3413,'ritika','comp','c');
+insert into stud values(3415,'riya','comp','c');
+insert into stud values(2410,'nikita','entc','c');
+insert into stud values(1413,'manvi','it','c');
+insert into stud values(1020,'abc','it','c');
+insert into stud values(2030,'cde','it','c');
+END;
+/
+
++++++SQL> delete from stud where name='abc';       
+
+1 row deleted.
+
+SQL> select * from stud;
+
+       RNO NAME       BRANCH ST
+---------- ---------- ------ --
+      3413 ritika     comp   c
+      2410 nikita     entc   c
+      1413 manvi      it     c
+
+SQL> select * from alumnii;
+
+       RNO NAME       BRANCH
+---------- ---------- ------
+      3415 riya       comp
+
+
++++++CREATE OR REPLACE TRIGGER upd8
+AFTER UPDATE ON stud
+FOR EACH ROW
+when (NEW.status='a')  
+BEGIN 
+   insert into alumnii(rno, name, branch) values (:OLD.rno,:OLD.name,:OLD.branch);
+   dbms_output.put_line(:OLD.rno|| :OLD.name|| :OLD.branch); 
+END; 
+/
+
+++++SQL>  @/home/TE/3413/oracle_commands.sql
+
+Trigger created.
+
+SQL> update stud set status='a' where name='ritika';
+
+1 row updated.
+
+SQL> select * from stud;
+
+       RNO NAME       BRANCH ST
+---------- ---------- ------ --
+      3413 ritika     comp   a
+      2410 nikita     entc   c
+      1413 manvi      it     c
+
+SQL> select * from alumnii;
+
+       RNO NAME       BRANCH
+---------- ---------- ------
+      3415 riya       comp
+      3413 ritika     comp
+
+SQL> 
+
+

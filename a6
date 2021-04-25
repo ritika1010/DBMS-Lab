@@ -1,0 +1,48 @@
+create  table nemp_13(id number(2),name varchar(10),city varchar(10));
+create  table oemp_13(id number(2),name varchar(10),city varchar(10));
+
+
+***SQL> select * from oemp_13;
+
+	ID NAME       CITY
+---------- ---------- ----------
+	13 ritika     pune
+	15 riya       nashik
+	21 gitesh     pune
+	60 shraddha   shirdi
+
+SQL> select * from nemp_13;
+
+	ID NAME       CITY
+---------- ---------- ----------
+	42 varun      nashik
+	15 riya       nashik
+	20 shivam     dhule
+	60 shraddha   shirdi
+
+
+**8DECLARE
+o_id oemp_13.id%type;
+o_name oemp_13.name%type;
+o_city oemp_13.city%type;
+n_id nemp_13.id%type;
+n_name nemp_13.name%type;
+n_city nemp_13.city%type;
+CURSOR c_new is 
+      SELECT * FROM nemp_13; 
+CURSOR c_old(id nemp_13.id%type) is 
+      SELECT * FROM oemp_13 WHERE id!=oemp_13.id; 
+BEGIN
+   OPEN c_new; 
+   LOOP 
+   FETCH c_new into n_id, n_name,n_city; 
+      EXIT WHEN c_new%notfound; 
+	open c_old(n_id);
+	FETCH c_old into o_id, o_name,o_city;
+dbms_output.put_line(o_id || ' ' || o_name || ' ' || o_city);
+insert into nemp_13 values(o_id,o_name,o_city);
+close c_old;
+end loop;
+close c_new;
+end;
+/

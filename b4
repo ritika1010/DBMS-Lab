@@ -1,0 +1,77 @@
+> db.createCollection("Student")
+{ "ok" : 1 }
+> show collections
+CRUD
+Student
+empl
+system.indexes
+> db.Student.insert([{"name":"Ritika","subject":"toc","marks":20},{"name":"Riya","subject":"toc","marks":22},{"name":"Ritika","subject":"sepm","marks":25},{"name":"Riya","subject":"cn","marks":20},{"name":"Riya","subject":"sepm","marks":22},{"name":"Ritika","subject":"cn","marks":17}])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 6,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> db.Student.find().pretty()
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b6008"),
+	"name" : "Ritika",
+	"subject" : "toc",
+	"marks" : 20
+}
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b6009"),
+	"name" : "Riya",
+	"subject" : "toc",
+	"marks" : 22
+}
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b600a"),
+	"name" : "Ritika",
+	"subject" : "sepm",
+	"marks" : 25
+}
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b600b"),
+	"name" : "Riya",
+	"subject" : "cn",
+	"marks" : 20
+}
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b600c"),
+	"name" : "Riya",
+	"subject" : "sepm",
+	"marks" : 22
+}
+{
+	"_id" : ObjectId("5d889979f8dd76f3cb3b600d"),
+	"name" : "Ritika",
+	"subject" : "cn",
+	"marks" : 17
+}
+> 
+
+
+db.Student.mapReduce(function(){emit(this.name,this.marks);},function(key,values){return Array.sum(values)},{query:{name:"Ritika"},out:"marks"})
+{
+	"result" : "marks",
+	"timeMillis" : 19,
+	"counts" : {
+		"input" : 3,
+		"emit" : 3,
+		"reduce" : 1,
+		"output" : 1
+	},
+	"ok" : 1
+}
+db.Student.mapReduce(function(){emit(this.name,this.marks);},function(key,values){return Array.sum(values)},{query:{name:"Ritika"},out:"marks"}).find()
+{ "_id" : "Ritika", "value" : 62 }
+
+
+> db.Student.mapReduce(function(){emit(this.name,this.marks);},function(key,values){return Array.sum(values)},{query:{name:"Riya"},out:"marks"}).find()
+{ "_id" : "Riya", "value" : 64 }
+

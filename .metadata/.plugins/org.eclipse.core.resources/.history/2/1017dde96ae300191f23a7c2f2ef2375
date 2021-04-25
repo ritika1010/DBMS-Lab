@@ -1,0 +1,24 @@
+package b7_new;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.diagnostics.logging.Logger;
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential; 
+
+public class connectivity {
+	 //gger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
+	   //ongoLogger.setLevel(Level.SEVERE);
+	MongoClient mongo = new MongoClient( "10.10.15.202" , 27017 ); 
+	   
+    // Creating Credentials 
+    MongoCredential credential= MongoCredential.createCredential("te3413db", "te3413db", 
+       "password".toCharArray()); 
+     
+    //System.out.print("Credentials ::"+ credential); 
+    // Accessing the database 
+    MongoDatabase database = mongo.getDatabase("te3413db"); 
+    MongoCollection collection = database.getCollection("test");
+   
+   // System.out.print("Credentials ::"+ credential);     
+
+}

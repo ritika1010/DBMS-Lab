@@ -1,0 +1,224 @@
+*****MariaDB [t3413db]> select * from prof natural join department;
++---------+---------+------------+------------+-------------+---------+------------+--------------------------+-------------+----------+-----------+
+| dept_id | prof_id | prof_fname | prof_lname | designation | salary  | doj        | email                    | phone       | city     | dept_name |
++---------+---------+------------+------------+-------------+---------+------------+--------------------------+-------------+----------+-----------+
+| c01     | c0113   | Ritika     | Deshpande  | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune     | Comp      |
+| c01     | c0115   | Riya       | Disawal    | BE          |  100000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | nashik   | Comp      |
+| c02     | c0210   | Atharva    | Deshpande  | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune     | Comp      |
+| c02     | c0260   | Shraddha   | Lodha      | BTech       |  420000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune     | Comp      |
+| e01     | e0118   | Dhondu     | Agarwal    | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | nashik   | EnTC      |
+| i02     | e0220   | Shivam     | Giri       | BTech       |  500000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai   | IT        |
+| i01     | i0142   | Varun      | Patil      | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | nashik   | IT        |
+| i02     | i0238   | Dinesh     | Agarwal    | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai   | IT        |
+| i02     | i0242   | Gitesh     | Chinawalka | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | bhusawal | IT        |
++---------+---------+------------+------------+-------------+---------+------------+--------------------------+-------------+----------+-----------+
+9 rows in set (0.00 sec)
+
+******MariaDB [t3413db]> select prof.prof_id,prof.prof_fname,Shift.shift from prof inner join Shift on prof.prof_id=Shift.prof_id;
++---------+------------+-------+
+| prof_id | prof_fname | shift |
++---------+------------+-------+
+| i0242   | Gitesh     | 2nd   |
+| i0238   | Dinesh     | 2nd   |
+| i0142   | Varun      | 1st   |
+| c0210   | Atharva    | 2nd   |
+| c0260   | Shraddha   | 2nd   |
+| c0113   | Ritika     | 1st   |
+| c0115   | Riya       | 1st   |
+| e0118   | Dhondu     | 1st   |
+| e0220   | Shivam     | 2nd   |
++---------+------------+-------+
+9 rows in set (0.00 sec)
+
+******MariaDB [t3413db]> select department.dept_name,prof.prof_fname from department left join prof on prof.dept_id=department.dept_id order by dept_name;
++-----------+------------+
+| dept_name | prof_fname |
++-----------+------------+
+| Comp      | Ritika     |
+| Comp      | Riya       |
+| Comp      | Atharva    |
+| Comp      | Shraddha   |
+| EnTC      | Dhondu     |
+| IT        | Varun      |
+| IT        | Shivam     |
+| IT        | Dinesh     |
+| IT        | Gitesh     |
++-----------+------------+
+9 rows in set (0.00 sec)
+
+*******MariaDB [t3413db]> select prof.prof_fname,prof.prof_lname,department.dept_name from prof right join department on prof.dept_id=department.dept_id order by prof_fname;
++------------+------------+-----------+
+| prof_fname | prof_lname | dept_name |
++------------+------------+-----------+
+| Atharva    | Deshpande  | Comp      |
+| Dhondu     | Agarwal    | EnTC      |
+| Dinesh     | Agarwal    | IT        |
+| Gitesh     | Chinawalka | IT        |
+| Ritika     | Deshpande  | Comp      |
+| Riya       | Disawal    | Comp      |
+| Shivam     | Giri       | IT        |
+| Shraddha   | Lodha      | Comp      |
+| Varun      | Patil      | IT        |
++------------+------------+-----------+
+9 rows in set (0.00 sec)
+
+
+*****MariaDB [t3413db]> select prof.prof_fname,department.dept_name,Shift.shift,prof.salary from prof left join department on department.dept_id=prof.dept_id  left join Shift on Shift.prof_id=prof.prof_id order by prof.salary;   
++------------+-----------+-------+---------+
+| prof_fname | dept_name | shift | salary  |
++------------+-----------+-------+---------+
+| Riya       | Comp      | 1st   |  100000 |
+| Varun      | IT        | 1st   |  200000 |
+| Ritika     | Comp      | 1st   |  200000 |
+| Shraddha   | Comp      | 2nd   |  420000 |
+| Gitesh     | IT        | 2nd   |  500000 |
+| Shivam     | IT        | 2nd   |  500000 |
+| Dhondu     | EnTC      | 1st   |  800000 |
+| Dinesh     | IT        | 2nd   | 1000000 |
+| Atharva    | Comp      | 2nd   | 2000000 |
++------------+-----------+-------+---------+
+9 rows in set (0.00 sec)
+
+
+*******MariaDB [t3413db]> select department.dept_name,count(*) from prof inner join department on prof.dept_id=department.dept_id group by dept_name;
++-----------+----------+
+| dept_name | count(*) |
++-----------+----------+
+| Comp      |        4 |
+| EnTC      |        1 |
+| IT        |        4 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+
+******MariaDB [t3413db]> select prof_id from prof where dept_id in  (select dept_id from department where dept_name="Comp" );
++---------+
+| prof_id |
++---------+
+| c0113   |
+| c0115   |
+| c0210   |
+| c0260   |
++---------+
+4 rows in set (0.00 sec)
+
+
+******MariaDB [t3413db]> select dept_name from department where dept_id in (select dept_id from prof where year(doj)=2015);
++-----------+
+| dept_name |
++-----------+
+| Comp      |
+| IT        |
++-----------+
+2 rows in set (0.00 sec)
+
+
+******MariaDB [t3413db]> create view prof_shift as select prof.prof_fname,Shift.shift,Shift.working_hours from prof inner join Shift on prof.prof_id=Shift.prof_id;
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [t3413db]> select * from prof_shift;
++------------+-------+---------------+
+| prof_fname | shift | working_hours |
++------------+-------+---------------+
+| Gitesh     | 2nd   | 04:00:00      |
+| Dinesh     | 2nd   | 06:00:00      |
+| Varun      | 1st   | 03:00:00      |
+| Atharva    | 2nd   | 08:00:00      |
+| Shraddha   | 2nd   | 05:00:00      |
+| Ritika     | 1st   | 06:00:00      |
+| Riya       | 1st   | 05:00:00      |
+| Dhondu     | 1st   | 04:00:00      |
+| Shivam     | 2nd   | 06:00:00      |
++------------+-------+---------------+
+9 rows in set (0.00 sec)
+
+
+******MariaDB [t3413db]> create view prof_salary as select prof_id, salary from prof;
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [t3413db]> select * from prof_salary;
++---------+---------+
+| prof_id | salary  |
++---------+---------+
+| c0113   |  200000 |
+| c0115   |  100000 |
+| c0210   | 2000000 |
+| c0260   |  420000 |
+| e0118   |  800000 |
+| e0220   |  500000 |
+| i0142   |  200000 |
+| i0238   | 1000000 |
+| i0242   |  500000 |
++---------+---------+
+9 rows in set (0.00 sec)
+
+*****MariaDB [t3413db]> insert into prof_salary values("Akash","10000");
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> select * from prof_salary;
++---------+---------+
+| prof_id | salary  |
++---------+---------+
+| Akash   |   10000 |
+| c0113   |  200000 |
+| c0115   |  100000 |
+| c0210   | 2000000 |
+| c0260   |  420000 |
+| e0118   |  800000 |
+| e0220   |  500000 |
+| i0142   |  200000 |
+| i0238   | 1000000 |
+| i0242   |  500000 |
++---------+---------+
+10 rows in set (0.00 sec)
+
+*****MariaDB [t3413db]> update prof_salary set prof_id="c0111" where prof_id="Akash";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> select * from prof_salary;
++---------+---------+
+| prof_id | salary  |
++---------+---------+
+| c0111   |   10000 |
+| c0113   |  200000 |
+| c0115   |  100000 |
+| c0210   | 2000000 |
+| c0260   |  420000 |
+| e0118   |  800000 |
+| e0220   |  500000 |
+| i0142   |  200000 |
+| i0238   | 1000000 |
+| i0242   |  500000 |
++---------+---------+
+10 rows in set (0.00 sec)
+
+
+*****MariaDB [t3413db]> delete from prof_salary where prof_id="c0111";
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> select * from prof_salary;
++---------+---------+
+| prof_id | salary  |
++---------+---------+
+| c0113   |  200000 |
+| c0115   |  100000 |
+| c0210   | 2000000 |
+| c0260   |  420000 |
+| e0118   |  800000 |
+| e0220   |  500000 |
+| i0142   |  200000 |
+| i0238   | 1000000 |
+| i0242   |  500000 |
++---------+---------+
+9 rows in set (0.00 sec)
+
+
+****MariaDB [t3413db]> drop view prof_salary;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [t3413db]> select * from prof_salary;
+ERROR 1146 (42S02): Table 't3413db.prof_salary' doesn't exist
+
+
+

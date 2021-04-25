@@ -1,0 +1,138 @@
+> db.createCollection("empl")
+{ "ok" : 1 }
+> db.empl.createIndex({"empl_id":1,unique:true})
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> db.empl.insert({"empl_id":1145,"name":"riya","city":"nashik","salary":20000})
+WriteResult({ "nInserted" : 1 })
+> db.empl.insert({"empl_id":1245,"name":"akshay","city":"mumbai","salary":10000})
+WriteResult({ "nInserted" : 1 })
+> db.empl.find();
+{ "_id" : ObjectId("5d7b747b4e1205ef81b6a39e"), "empl_id" : 1145, "name" : "riya", "city" : "nashik", "salary" : 20000 }
+{ "_id" : ObjectId("5d7b748c4e1205ef81b6a39f"), "empl_id" : 1245, "name" : "akshay", "city" : "mumbai", "salary" : 10000 }
+> db.empl.find().pretty()
+{
+	"_id" : ObjectId("5d7b747b4e1205ef81b6a39e"),
+	"empl_id" : 1145,
+	"name" : "riya",
+	"city" : "nashik",
+	"salary" : 20000
+}
+{
+	"_id" : ObjectId("5d7b748c4e1205ef81b6a39f"),
+	"empl_id" : 1245,
+	"name" : "akshay",
+	"city" : "mumbai",
+	"salary" : 10000
+}
+> db.empl.insert({"empl_id":1035,"name":"ritika","city":"pune","salary":15000})
+WriteResult({ "nInserted" : 1 })
+> db.empl.find().pretty()
+{
+	"_id" : ObjectId("5d7b747b4e1205ef81b6a39e"),
+	"empl_id" : 1145,
+	"name" : "riya",
+	"city" : "nashik",
+	"salary" : 20000
+}
+{
+	"_id" : ObjectId("5d7b748c4e1205ef81b6a39f"),
+	"empl_id" : 1245,
+	"name" : "akshay",
+	"city" : "mumbai",
+	"salary" : 10000
+}
+{
+	"_id" : ObjectId("5d7b74c24e1205ef81b6a3a0"),
+	"empl_id" : 1035,
+	"name" : "ritika",
+	"city" : "pune",
+	"salary" : 15000
+}
+> shoe index
+2019-09-13T16:22:01.557+0530 E QUERY    SyntaxError: Unexpected identifier
+> show index
+2019-09-13T16:22:08.694+0530 E QUERY    Error: don't know how to show [index]
+    at Error (<anonymous>)
+    at shellHelper.show (src/mongo/shell/utils.js:733:11)
+    at shellHelper (src/mongo/shell/utils.js:524:36)
+    at (shellhelp2):1:1 at src/mongo/shell/utils.js:733
+> db.empl.getIndexes()
+[
+	{
+		"v" : 1,
+		"key" : {
+			"_id" : 1
+		},
+		"name" : "_id_",
+		"ns" : "te3413db.empl"
+	},
+	{
+		"v" : 1,
+		"key" : {
+			"empl_id" : 1,
+			"unique" : true
+		},
+		"name" : "empl_id_1_unique_true",
+		"ns" : "te3413db.empl"
+	}
+]
+> 
+
+
+db.empl.aggregate({$group:{_id:"$city",total:{$sum:1}}})
+{ "_id" : "pune", "total" : 2 }
+{ "_id" : "mumbai", "total" : 1 }
+{ "_id" : "nashik", "total" : 1 }
+
+> db.empl.aggregate({$group:{_id:null,max_salary:{$sum:"$salary"}}})
+{ "_id" : null, "total_salary" : 56000 }
+
+
+ db.empl.aggregate({$group:{_id:null,max_salary:{$max:"$salary"}}})
+{ "_id" : null, "max_salary" : 20000 }
+
+
+
+
+db.empl.aggregate([{$sort:{empl_id:1}}]).pretty();
+{
+	"_id" : ObjectId("5d7b74c24e1205ef81b6a3a0"),
+	"empl_id" : 1035,
+	"name" : "ritika",
+	"city" : "pune",
+	"salary" : 15000
+}
+{
+	"_id" : ObjectId("5d7b747b4e1205ef81b6a39e"),
+	"empl_id" : 1145,
+	"name" : "riya",
+	"city" : "nashik",
+	"salary" : 20000
+}
+{
+	"_id" : ObjectId("5d7b748c4e1205ef81b6a39f"),
+	"empl_id" : 1245,
+	"name" : "akshay",
+	"city" : "mumbai",
+	"salary" : 10000
+}
+{
+	"_id" : ObjectId("5d7b77e24e1205ef81b6a3a1"),
+	"empl_id" : 2335,
+	"name" : "gitesh",
+	"city" : "pune",
+	"salary" : 11000
+}
+> 
+
+
+
+db.empl.aggregate([{$group:{_id:null,first_employee:{$first:"$empl_id"}}}])
+{ "_id" : null, "first_employee" : 1145 }
+
+

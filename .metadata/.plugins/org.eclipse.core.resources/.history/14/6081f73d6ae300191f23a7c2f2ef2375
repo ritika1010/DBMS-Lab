@@ -1,0 +1,18 @@
+package b7_new;
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential; 
+
+public class connectivity {
+	MongoClient mongo = new MongoClient( "10.10.15.202" , 27017 ); 
+	   
+    // Creating Credentials 
+    MongoCredential credential= MongoCredential.createCredential("te3413db", "te3413db", 
+       "password".toCharArray()); 
+     
+    //System.out.print("Credentials ::"+ credential); 
+    // Accessing the database 
+    MongoDatabase database = mongo.getDatabase("te3413db"); 
+   // System.out.print("Credentials ::"+ credential);     
+
+}

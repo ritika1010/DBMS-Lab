@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.cdt.ui.newCWizards"/>
+			<item value="org.eclipse.team.cvs.ui.newWizards"/>
+			<item value="org.eclipse.emf.codegen.ecore.ui.wizardCategory"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.pde.PDE"/>
+			<item value="org.python.pydev.PythonCategory"/>
+			<item value="org.eclipse.ptp.rdt.ui.wizardCategory.Remote"/>
+			<item value="org.eclipse.linuxtools.rpm.ui.editor"/>
+			<item value="org.tigris.subversion.subclipse.ui.svn"/>
+			<item value="cdt.managedbuild.wizardcategory.upc"/>
+		</list>
+	</section>
+</section>

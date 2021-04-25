@@ -1,0 +1,836 @@
+Database changed
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-01-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where city="pune" and city="mumbai" and prof_fname like "%A" or prof_fname like "%D";
+Empty set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like "%A" or prof_fname like "%D";
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    | 9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        | 8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   | 8786792410 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     | 9854141526 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like '%A' or prof_fname like '%D';
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    | 9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        | 8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   | 8786792410 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     | 9854141526 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like '%A';
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    | 9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        | 8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   | 8786792410 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     | 9854141526 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where city="pune";
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    | 9595966244 | pune |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    | 7507048404 | pune |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     | 9854141526 | pune |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-01-01 | dhonduseth9@yahoo.com    |  738545620 | pune |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+5 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-01-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like '%A';
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    | 9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        | 8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   | 8786792410 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     | 9854141526 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like 'A%';
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+1 row in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof where prof_fname like 'A%' or prof_fname like 'D%;
+    '> '
+    -> '
+[1]+  Stopped                 mysql -h 10.10.15.202 -u t3413 -p
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 't3413'@'10.10.12.196' (using password: YES)
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 119
+Server version: 5.5.43-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use t3414db;
+ERROR 1044 (42000): Access denied for user 't3413'@'%' to database 't3414db'
+MariaDB [(none)]> use te3413db;
+ERROR 1044 (42000): Access denied for user 't3413'@'%' to database 'te3413db'
+MariaDB [(none)]> use t3413db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [t3413db]> select * from prof where city="pune' and city="mumbai" and prof_fname like 'A%' or prof_fname like 'D%';
+    "> ;
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> qwt
+    "> select * from prof where city="pune" and city="mumbai" and prof_fname like 'A%' or prof_fname like 'D%';
+    "> select * from prof where city="pune";
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> 
+    "> leave
+    "> quit
+    "> 
+[2]+  Stopped                 mysql -h 10.10.15.202 -u t3413 -p
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 't3413'@'10.10.12.196' (using password: YES)
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 123
+Server version: 5.5.43-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use t3413
+ERROR 1044 (42000): Access denied for user 't3413'@'%' to database 't3413'
+MariaDB [(none)]> use t3413db
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+=============================================MariaDB [t3413db]> select * from prof where (prof_fname like 'A%' or prof_fname like 'D%') and city="pune";
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone      | city |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-01-01 | dhonduseth9@yahoo.com    |  738545620 | pune |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com | 9850013337 | pune |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+------------+------+
+2 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select distinct from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from prof' at line 1
+MariaDB [t3413db]> select distinct from prof where city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from prof where city' at line 1
+=======================MariaDB [t3413db]> select distinct city  from prof;
++--------+
+| city   |
++--------+
+| pune   |
+| mumbai |
++--------+
+2 rows in set (0.01 sec)
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-01-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update from prof 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from prof' at line 1
+MariaDB [t3413db]> update prof 
+    -> set doj="(salary-(salary*5/100))";
+Query OK, 10 rows affected, 10 warnings (0.02 sec)
+Rows matched: 10  Changed: 10  Warnings: 10
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 0000-00-00 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 0000-00-00 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 0000-00-00 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 0000-00-00 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 0000-00-00 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 0000-00-00 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 0000-00-00 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 0000-00-00 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 0000-00-00 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 0000-00-00 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update doj="2018/02/01" where prof_fname="Ritika";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"2018/02/01" where prof_fname="Ritika"' at line 1
+MariaDB [t3413db]> update doj="2018/02/01" where prof_fname='Ritika';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"2018/02/01" where prof_fname='Ritika'' at line 1
+MariaDB [t3413db]> update doj="2018/02/01" from prof  where prof_fname='Ritika';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"2018/02/01" from prof  where prof_fname='Ritika'' at line 1
+MariaDB [t3413db]> update prof  set doj="2018/02/01  where prof_fname="Ritika";
+    "> 2018/02/01
+    "> 
+[3]+  Stopped                 mysql -h 10.10.15.202 -u t3413 -p
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 134
+Server version: 5.5.43-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use t3413db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [t3413db]> update prof
+    -> set doj='2018/02/01'
+    -> where prof_fname='Ritika';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2018/01/01' where prof_fname='Riya';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2018/01/01' where prof_fname='Nikita';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2019/05/01' where prof_fname='Varun';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2015/01/01' where prof_fname='Gitesh';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2019/02/01' where prof_fname='Shivam';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2015/02/01' where prof_fname='Shraddha';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2015/01/01' where prof_fname='Dinesh';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2017/02/01' where prof_fname='Dhondu';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set doj='2012/01/01' where prof_fname=Atharva';
+    '> update prof set doj='2012/01/01' where prof_fname='Atharva';
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> update prof set doj='2019/05/01' where prof_fname='Varun';
+    '> 
+[4]+  Stopped                 mysql -h 10.10.15.202 -u t3413 -p
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3414 -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 't3414'@'10.10.12.196' (using password: YES)
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 't3413'@'10.10.12.196' (using password: YES)
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 139
+Server version: 5.5.43-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use t3413db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [t3413db]> update prof set doj='2012/01/01' where prof_fname='Atharva';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> select * prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'prof' at line 1
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  300000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set salary='(salary+(salary*5/100))'  where doj='2018/01/01';
+Query OK, 2 rows affected, 2 warnings (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 2
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |       0 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |       0 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set salary='(salary*105/100))'  where doj='2018/02/01';
+Query OK, 1 row affected, 1 warning (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 1
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |       0 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |       0 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |       0 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  100000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set salary='(salary*105)/100'  where doj='2019/02/01';
+Query OK, 1 row affected, 1 warning (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 1
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |       0 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |       0 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |       0 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |       0 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  400000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set salary=(salary*105)/100  where doj='2015/02/01';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |       0 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |       0 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |       0 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |       0 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  420000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set salary='500000'  where doj='2019/02/01';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set salary='200000'  where doj='2018/02/01';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set salary='100000'  where doj='2018/01/01';
+Query OK, 2 rows affected (1.68 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune   |
+| c0115   | Riya       | Disawal    | c01     | BE          |  100000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | mumbai |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | pune   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | mumbai |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  500000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  420000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune   |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | pune   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune   |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+--------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> update prof set city='nashik' where prof_fname='Riya';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set city='bhusawal' where prof_fname='Gitesh';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set city='nashik' where prof_fname='Dhondu';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> update prof set city='nashik' where prof_fname='Varun';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city     |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune     |
+| c0115   | Riya       | Disawal    | c01     | BE          |  100000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | nashik   |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai   |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | nashik   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | bhusawal |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  500000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai   |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  420000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune     |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai   |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | nashik   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune     |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> describe Shift;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| prof_id       | varchar(20) | YES  |     | NULL    |       |
+| shift         | varchar(5)  | YES  |     | NULL    |       |
+| working_hours | time        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [t3413db]> describe work;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| prof_id  | varchar(20) | YES  |     | NULL    |       |
+| dept_id  | varchar(10) | YES  |     | NULL    |       |
+| duration | time        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [t3413db]> insert into work
+    -> values ('c0113','c01','06:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into work values ('c0115','c01','04:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into work values ('c0210','c01','08:00:00');
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [t3413db]> insert into work values ('c0260','c02','05:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> update work set dept_id='c02' where prof_id='c0210';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [t3413db]> insert into work values ('e0220','e02','06:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into work values ('e0110','e01','05:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into work values ('e0118','e01','04:00:00');
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [t3413db]> insert into work values ('i0142','i01','03:00:00');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [t3413db]> insert into work values ('i0242','i02','04:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into work values ('i0238','i02','06:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> select * from work;
++---------+---------+----------+
+| prof_id | dept_id | duration |
++---------+---------+----------+
+| c0113   | c01     | 06:00:00 |
+| c0115   | c01     | 04:00:00 |
+| c0210   | c02     | 08:00:00 |
+| c0260   | c02     | 05:00:00 |
+| e0220   | e02     | 06:00:00 |
+| e0110   | e01     | 05:00:00 |
+| e0118   | e01     | 04:00:00 |
+| i0142   | i01     | 03:00:00 |
+| i0242   | i02     | 04:00:00 |
+| i0238   | i02     | 06:00:00 |
++---------+---------+----------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> describe Shift;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| prof_id       | varchar(20) | YES  |     | NULL    |       |
+| shift         | varchar(5)  | YES  |     | NULL    |       |
+| working_hours | time        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+MariaDB [t3413db]> insert into Shift values ('i0242','2nd','04:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into Shift values ('i0238','2nd','06:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into Shift values ('i0142','1st','03:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into Shift values ('c0210','2nd','08:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into Shift values ('c0260','2nd','05:00:00');
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [t3413db]> insert into Shift values ('c0113','1st','06:00:00');
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [t3413db]> insert into Shift values ('c0115','1st','05:00:00');
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [t3413db]> insert into Shift values ('e0110','1st','05:00:00');
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [t3413db]> insert into Shift values ('e0118','1st','04:00:00');
+Query OK, 1 row affected (0.16 sec)
+
+MariaDB [t3413db]> insert into Shift values ('e0220','2nd','06:00:00');
+Query OK, 1 row affected (0.02 sec)
+
+MariaDB [t3413db]> select * from Shift;
++---------+-------+---------------+
+| prof_id | shift | working_hours |
++---------+-------+---------------+
+| i0242   | 2nd   | 04:00:00      |
+| i0238   | 2nd   | 06:00:00      |
+| i0142   | 1st   | 03:00:00      |
+| c0210   | 2nd   | 08:00:00      |
+| c0260   | 2nd   | 05:00:00      |
+| c0113   | 1st   | 06:00:00      |
+| c0115   | 1st   | 05:00:00      |
+| e0110   | 1st   | 05:00:00      |
+| e0118   | 1st   | 04:00:00      |
+| e0220   | 2nd   | 06:00:00      |
++---------+-------+---------------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select * from prof;
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+| prof_id | prof_fname | prof_lname | dept_id | designation | salary  | doj        | email                    | phone       | city     |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+| c0113   | Ritika     | Deshpande  | c01     | BE          |  200000 | 2018-02-01 | ritika_gd@outlook.com    |  9595966244 | pune     |
+| c0115   | Riya       | Disawal    | c01     | BE          |  100000 | 2018-01-01 | riyayrd@gmail.com        |  8751692410 | nashik   |
+| e0110   | Nikita     | Bodke      | e01     | BTech       |  100000 | 2018-01-01 | geniusnikita@gmail.com   |  8786792410 | mumbai   |
+| i0142   | Varun      | Patil      | i01     | BE          |  200000 | 2019-05-01 | varunppatil@gmail.com    |  7507048404 | nashik   |
+| i0242   | Gitesh     | Chinawalka | i02     | BTech       |  500000 | 2015-01-01 | gitando@gmail.com        |  7319045620 | bhusawal |
+| e0220   | Shivam     | Giri       | i02     | BTech       |  500000 | 2019-02-01 | giribhau@hotmail.com     | 98541045620 | mumbai   |
+| c0260   | Shraddha   | Lodha      | c02     | BTech       |  420000 | 2015-02-01 | shraddha@hotmail.com     |  9854141526 | pune     |
+| i0238   | Dinesh     | Agarwal    | i02     | ME          | 1000000 | 2015-01-01 | dinu1999@yahoo.com       |   738545620 | mumbai   |
+| e0118   | Dhondu     | Agarwal    | e01     | MTech       |  800000 | 2017-02-01 | dhonduseth9@yahoo.com    |   738545620 | nashik   |
+| c0210   | Atharva    | Deshpande  | c02     | PhD         | 2000000 | 2012-01-01 | smartatharva@hotmail.com |  9850013337 | pune     |
++---------+------------+------------+---------+-------------+---------+------------+--------------------------+-------------+----------+
+10 rows in set (0.00 sec)
+
+=========================================MariaDB [t3413db]> select prof_fname from prof where city='pune' union select prof_fname from prof where city='mumbai';
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Shraddha   |
+| Atharva    |
+| Nikita     |
+| Shivam     |
+| Dinesh     |
++------------+
+6 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where dept_id='c01' intersect select duration from work where dept_id='c01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'intersect select duration from work where dept_id='c01'' at line 1
+MariaDB [t3413db]> select prof_fname from prof where dept_id='c01' intersect select prof_name from prof where city='pune';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'intersect select prof_name from prof where city='pune'' at line 1
+MariaDB [t3413db]> select prof_fname from prof where dept_id='c01';
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Riya       |
++------------+
+2 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where city='pune';
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Shraddha   |
+| Atharva    |
++------------+
+3 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where city='pune' intersect prof_fname from prof where dept_id='c01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'intersect prof_fname from prof where dept_id='c01'' at line 1
+MariaDB [t3413db]> select prof_fname from prof where city='pune' intersect select prof_fname from prof where dept_id='c01';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'intersect select prof_fname from prof where dept_id='c01'' at line 1
+MariaDB [t3413db]> 
+MariaDB [t3413db]> select prof_fname from prof where city='pune' in (select prof_fname from prof where dept_id='c01');
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Riya       |
+| Nikita     |
+| Varun      |
+| Gitesh     |
+| Shivam     |
+| Shraddha   |
+| Dinesh     |
+| Dhondu     |
+| Atharva    |
++------------+
+10 rows in set, 10 warnings (0.00 sec)
+
+MariaDB [t3413db]> Ctrl-C -- exit!
+Aborted
+[TE@localhost ~]$ use t3413db;
+bash: use: command not found...
+[TE@localhost ~]$ mysql -h 10.10.15.202 -u t3413 -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 158
+Server version: 5.5.43-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use t3413db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [t3413db]> gj fl.gblj W3L\C
+ERROR: Usage: \C charset_name | charset charset_name
+    -> 
+    -> 
+    -> 
+    -> \c
+MariaDB [t3413db]> gdkSGljWY\C
+ERROR: Usage: \C charset_name | charset charset_name
+    -> \C
+ERROR: Usage: \C charset_name | charset charset_name
+    -> \c
+MariaDB [t3413db]> select max(salary) from prof;
++-------------+
+| max(salary) |
++-------------+
+|     2000000 |
++-------------+
+1 row in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname where salary= max(salary) from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where salary= max(salary) from prof' at line 1
+MariaDB [t3413db]> select prof_fname where max(salary) from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where max(salary) from prof' at line 1
+MariaDB [t3413db]> select prof_fname where salary=max(salary) from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where salary=max(salary) from prof' at line 1
+MariaDB [t3413db]> select * where salary=max(salary) from prof;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where salary=max(salary) from prof' at line 1
+MariaDB [t3413db]> select max(salary),porf_fname from prof;
+ERROR 1054 (42S22): Unknown column 'porf_fname' in 'field list'
+MariaDB [t3413db]> select max(salary),prof_fname from prof;
++-------------+------------+
+| max(salary) | prof_fname |
++-------------+------------+
+|     2000000 | Ritika     |
++-------------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where salary in(100000,200000);
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Riya       |
+| Nikita     |
+| Varun      |
++------------+
+4 rows in set (0.00 sec)
+
+===========================================MariaDB [t3413db]> select prof_fname from prof where salary in(200000,100000);
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Riya       |
+| Nikita     |
+| Varun      |
++------------+
+4 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where salary in(max(salary));
+ERROR 1111 (HY000): Invalid use of group function
+MariaDB [t3413db]> select prof_fname from prof where salary in max(salary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'max(salary)' at line 1
+MariaDB [t3413db]> select prof_fname from prof where salary=max(salary);
+ERROR 1111 (HY000): Invalid use of group function
+MariaDB [t3413db]> select concat(prof_fname,' ',prof_lname) from prof;
++-----------------------------------+
+| concat(prof_fname,' ',prof_lname) |
++-----------------------------------+
+| Ritika Deshpande                  |
+| Riya Disawal                      |
+| Nikita Bodke                      |
+| Varun Patil                       |
+| Gitesh Chinawalka                 |
+| Shivam Giri                       |
+| Shraddha Lodha                    |
+| Dinesh Agarwal                    |
+| Dhondu Agarwal                    |
+| Atharva Deshpande                 |
++-----------------------------------+
+10 rows in set (0.00 sec)
+
+MariaDB [t3413db]> select prof_fname from prof where (select max(salary) from prof);
++------------+
+| prof_fname |
++------------+
+| Ritika     |
+| Riya       |
+| Nikita     |
+| Varun      |
+| Gitesh     |
+| Shivam     |
+| Shraddha   |
+| Dinesh     |
+| Dhondu     |
+| Atharva    |
++------------+
+10 rows in set (0.01 sec)
+
+MariaDB [t3413db]> 
+
